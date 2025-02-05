@@ -3,7 +3,7 @@
 - 현대 컴퓨터는 대부분 byte 단위로 데이터를 추고 받는다. 파일을 받을 수도 있고 네트워크나 콘솔로 입력을 받을 수도 있다.
 - 각자의 방식을 추상화 한 클래스가 InputStream, OutputStream이다.
 
-## BufferedInput/OutputStream
+## BufferedInputStream / BufferedOutputStream
 
 - 버퍼를 사용하면 I/O 시스템 콜을 적게 호출하면서 성능이 올라간다.
 - 디스크나 파일 시스템에서 데이터를 읽고 쓰는 기본 단위가 4KB or 8KB이기 때문에 한 번에 크게 한다고 무작정 빠른 것은 아니다.
@@ -21,3 +21,9 @@
 - FileOutputStream처럼 단독으로 사용 가능하면 기본 스트림이라고 한다.
 - BufferedOutputStream처럼 단독으로 사용할 수 없고 보조적인 기능을 제공함면 보조 스트림이라고 한다.
     - 생성할 때도 기본 스트림을 대상으로 넣어줘야 가능하다.
+
+## Reader / Writer
+
+- 문자를 다루는 별도의 클래스
+- byte 대신 문자를 받아서 처리한다.
+    - 내부에서는 byte로 인코딩해서 처리한다.
