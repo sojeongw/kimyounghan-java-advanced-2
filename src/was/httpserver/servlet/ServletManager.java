@@ -1,8 +1,9 @@
-package was.httpserver;
+package was.httpserver.servlet;
 
+import was.httpserver.HttpRequest;
+import was.httpserver.HttpResponse;
+import was.httpserver.PageNotFoundException;
 import was.v5.servlet.HttpServlet;
-import was.v5.servlet.InternalErrorServlet;
-import was.v5.servlet.NotFoundServlet;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class ServletManager {
             if (servlet == null) {
                 throw new PageNotFoundException("request url = " + request.getPath());
             }
+            servlet.service(request, response);
         } catch (PageNotFoundException e) {
             e.printStackTrace();
             notFoundErrorServlet.service(request, response);

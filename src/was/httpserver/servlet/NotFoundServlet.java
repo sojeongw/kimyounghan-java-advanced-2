@@ -1,7 +1,8 @@
-package was.v5.servlet;
+package was.httpserver.servlet;
 
 import was.httpserver.HttpRequest;
 import was.httpserver.HttpResponse;
+import was.v5.servlet.HttpServlet;
 
 import java.io.IOException;
 

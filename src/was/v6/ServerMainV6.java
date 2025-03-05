@@ -1,25 +1,24 @@
-package was.v5;
+package was.v6;
 
 import was.httpserver.HttpServer;
 import was.httpserver.servlet.ServletManager;
+import was.httpserver.servlet.reflection.ReflectionServlet;
 import was.v5.servlet.DiscardServlet;
 import was.v5.servlet.HomeServlet;
-import was.v5.servlet.SearchServlet;
-import was.v5.servlet.Site1Servlet;
-import was.v5.servlet.Site2Servlet;
 
 import java.io.IOException;
+import java.util.List;
 
-public class ServerMainV5 {
-
+public class ServerMainV6 {
     private static final int PORT = 12345;
 
     public static void main(String[] args) throws IOException {
+        List<Object> controllers = List.of(new SiteControllerV6(), new SearchControllerV6());
+        ReflectionServlet servlet = new ReflectionServlet(controllers);
+
         ServletManager servletManager = new ServletManager();
+        servletManager.setDefaultServlet(servlet);
         servletManager.add("/", new HomeServlet());
-        servletManager.add("/site1", new Site1Servlet());
-        servletManager.add("/site2", new Site2Servlet());
-        servletManager.add("/search", new SearchServlet());
         servletManager.add("/favicon.ico", new DiscardServlet());
 
         HttpServer server = new HttpServer(PORT, servletManager);
